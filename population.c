@@ -17,5 +17,8 @@ PIXEL *generate_random_image(int width, int height, int max_color){
 }
 
 Individual *generate_population(int population_size, int width, int height, int max_color){
+  srand(time(NULL));
+  Individual *array2;
+  array2 = malloc(sizeof(Individual) * population_size);
   
 }
