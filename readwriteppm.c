@@ -43,3 +43,24 @@ PPM_IMAGE *read_ppm(const char *file_name){
   Pimage->data = data;
   return Pimage;
 }
+
+void write_ppm ( const char * file_name , const PPM_IMAGE * image ){
+
+  FILE *fpointer;
+  PPM_IMAGE *Pimage;
+  fpointer = fopen(file_name, "w");
+  fprintf(fpointer, "%*s\n%d %d\n%d\n", Pimage->width, Pimage->height, Pimage->max_color);
+  int size = Pimage->width * Pimage->height;
+
+  int widthCounter;
+  for (int i = 0; i < (size); i++){
+    fprintf(fpointer, "%d %d %d", Pimage->data[i].r, Pimage->data[i].g, Pimage->data[i].b);
+    widthCounter++;
+  //goes to next line once width is met
+    if(widthCounter == width){
+      fprintf(fpointer, "\n");
+      widthCounter = 0;
+    }
+  }
+
+}
