@@ -30,7 +30,8 @@ PPM_IMAGE *read_ppm(const char *file_name){
   data = malloc (size * sizeof(PIXEL));
 
   int widthCounter;
-  for (int i = 0; i < (size); i++){
+  int i;
+  for (i = 0; i < (size); i++){
     fscanf(fpointer,"%d %d %d", data[i].r, data[i].g, data[i].b);
     widthCounter++;
   //goes to next line once width is met
@@ -51,9 +52,9 @@ void write_ppm ( const char * file_name , const PPM_IMAGE * image ){
   fpointer = fopen(file_name, "w");
   fprintf(fpointer, "%*s\n%d %d\n%d\n", Pimage->width, Pimage->height, Pimage->max_color);
   int size = Pimage->width * Pimage->height;
-
+  int i;
   int widthCounter;
-  for (int i = 0; i < (size); i++){
+  for (i = 0; i < (size); i++){
     fprintf(fpointer, "%d %d %d", Pimage->data[i].r, Pimage->data[i].g, Pimage->data[i].b);
     widthCounter++;
   //goes to next line once width is met
