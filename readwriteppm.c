@@ -5,12 +5,9 @@
 
 PPM_IMAGE *read_ppm(const char *file_name){
 
-  PPM_IMAGE * Pimage;
-  PIXEL **imagePix;
-  int wid, len, mxc;
-  char pType[10];
-  char a;
-  int i;
+  PPM_IMAGE *Pimage;
+  PIXEL *data;
+  int width, length, maximum;
   FILE *fpointer;
   fpointer = fopen(file_name, "r");
 
@@ -20,18 +17,29 @@ PPM_IMAGE *read_ppm(const char *file_name){
     exit(1);
   }
 
-  if (fscanf(fpointer, "%s", &pType) == 1){
-    printf("%s\n", pType);
-  }
+  // read the rest of the header
+  fscanf(fpointer, "%*s\n%d %d\n%d\n", &width, &length, &maximum);
 
-  imagePix = malloc (wid * len * sizeof(PIXEL));
-  else  printf("hello\n");
-  while (fscanf(fpointer, "%d", &i)==1){
-    printf("%d\n", i);
-  }
+  //Set structure for PIXEL
+  Pimage->width = width;
+  Pimage->height = length;
+  Pimage->max_color = maximum;
 
+  //Setting aside memory for data
+  int size = width * length;
+  data = malloc (size * sizeof(PIXEL));
+
+  int widthCounter;
+  for (int i = 0; i < (size); i++){
+    fscanf(fpointer,"%d %d %d", data[i].r, data[i].g, data[i].b);
+    widthCounter++;
+  //goes to next line once width is met
+    if(widthCounter == width){
+      fscanf(fpointer, "\n");
+      widthCounter = 0;
+    }
+  }
+  //Sets data for PIXEL structure
+  Pimage->data = data;
   return Pimage;
-}
-int main(){
-  return 0;
 }
