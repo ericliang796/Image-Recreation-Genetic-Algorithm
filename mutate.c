@@ -4,7 +4,7 @@
 
 void mutate(Individual *individual, double rate){
   int size = individual->image->width*individual->image->height;
-  int pixels = rate/(100*size);
+  int pixels = (rate/100)*size;
   int i;
   for (i = 0;i < pixels;i++){
     int randH = rand()%individual->image->height;
