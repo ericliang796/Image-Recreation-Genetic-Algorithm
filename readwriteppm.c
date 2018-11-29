@@ -32,7 +32,7 @@ PPM_IMAGE *read_ppm(const char *file_name){
   int widthCounter;
   int i;
   for (i = 0; i < (size); i++){
-    fscanf(fpointer,"%d %d %d", data[i].r, data[i].g, data[i].b);
+    fscanf(fpointer,"%hhu %hhu %hhu", &(data[i].r), &(data[i].g), &(data[i].b));
     widthCounter++;
   //goes to next line once width is met
     if(widthCounter == width){
@@ -48,14 +48,14 @@ PPM_IMAGE *read_ppm(const char *file_name){
 void write_ppm ( const char * file_name , const PPM_IMAGE * image ){
 
   FILE *fpointer;
-  PPM_IMAGE *Pimage;
   fpointer = fopen(file_name, "w");
-  fprintf(fpointer, "%*s\n%d %d\n%d\n", Pimage->width, Pimage->height, Pimage->max_color);
-  int size = Pimage->width * Pimage->height;
+  fprintf(fpointer, "P3\n%d %d\n%d\n", image->width, image->height, image->max_color);
+  int size = image->width * image->height;
   int i;
+  int width = image->width;
   int widthCounter;
   for (i = 0; i < (size); i++){
-    fprintf(fpointer, "%d %d %d", Pimage->data[i].r, Pimage->data[i].g, Pimage->data[i].b);
+    fprintf(fpointer, "%d %d %d", image->data[i].r, image->data[i].g, image->data[i].b);
     widthCounter++;
   //goes to next line once width is met
     if(widthCounter == width){
