@@ -1,29 +1,30 @@
 #include "a4.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
 
 PIXEL *generate_random_image(int width, int height, int max_color){
-  int size = width*height;
-  PIXEL *array1;
-  int i;
-  array1 = malloc(sizeof(PIXEL) * size);
-  for (i = 0; i < size; i++){
-    array1[i].r = rand()%(max_color+1);
-    array1[i].g = rand()%(max_color+1);
-    array1[i].b = rand()%(max_color+1);
-  }
-  return array1;
+	PIXEL *rndImg;
+	int i;
+
+	rndImg=malloc(width*height*sizeof(PIXEL));
+	for(i=0;i<width*height;i++){
+		rndImg[i].r=rand()%(1+max_color);
+		rndImg[i].g=rand()%(1+max_color);
+		rndImg[i].b=rand()%(1+max_color);
+	}
+	return rndImg;
 }
 
 Individual *generate_population(int population_size, int width, int height, int max_color){
-  Individual *array2;
-  int i;
-  array2 = malloc(sizeof(Individual) * population_size);
-  for (i = 0; i < population_size; i++){
-    array2[i].image.data = generate_random_image(width, height, max_color);
-    array2[i].image.max_color = max_color;
-    array2[i].image.width = width;
-    array2[i].image.height = height;
-  }
-  return array2;
+	Individual *population;
+	int i;
+	population=malloc(population_size*sizeof(Individual));
+	for(i=0;i < population_size; i++){
+		population[i].image.width=width;
+		population[i].image.height=height;
+		population[i].image.max_color=max_color;
+		population[i].image.data=generate_random_image(width,height,max_color);
+	}
+	return population;
 }
