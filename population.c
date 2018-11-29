@@ -20,10 +20,10 @@ Individual *generate_population(int population_size, int width, int height, int 
   int i;
   array2 = malloc(sizeof(Individual) * population_size);
   for (i = 0; i < population_size; i++){
-    array2[i]->image->data = generate_random_image(width, height, max_color);
-    array2[i]->image->max_color = max_color;
-    array2[i]->image->width = width;
-    array2[i]->image->height = height;
+    array2[i].image.data = generate_random_image(width, height, max_color);
+    array2[i].image.max_color = max_color;
+    array2[i].image.width = width;
+    array2[i].image.height = height;
   }
   return array2;
 }
