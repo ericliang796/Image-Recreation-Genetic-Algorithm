@@ -23,9 +23,10 @@ PPM_IMAGE *read_ppm(const char *file_name){
 void write_ppm(const char *file_name, const PPM_IMAGE *image){
 	FILE *outMage;
 	int i;
+	int imgSize = image->height*image->width;
 	outMage=fopen(file_name, "w");
 	fprintf(outMage, "P3\n%d %d\n%d\n", image->width, image->height, image->max_color);
-	for(i=0;i<image->height*image->width;i++){
+	for(i=0;i<imgSize;i++){
 		if((i+1)%image->width==0) fprintf(outMage, "%d %d %d\n", image->data[i].r, image->data[i].g, image->data[i].b);
 		else fprintf(outMage, "%d %d %d ", image->data[i].r, image->data[i].g, image->data[i].b);
 		}

@@ -6,11 +6,13 @@
 PIXEL *generate_random_image(int width, int height, int max_color){
 	PIXEL *rndImg;
 	int i;
-	rndImg=malloc(width*height*sizeof(PIXEL));
-	for(i=0;i<width*height;i++){
-		rndImg[i].r=rand()%(1+max_color);
-		rndImg[i].g=rand()%(1+max_color);
-		rndImg[i].b=rand()%(1+max_color);
+	int size = width*height;
+	int randColor = 1+max_color;
+	rndImg=malloc(size*sizeof(PIXEL));
+	for(i=0;i<size;i++){
+		rndImg[i].r=rand()%(randColor);
+		rndImg[i].g=rand()%(randColor);
+		rndImg[i].b=rand()%(randColor);
 	}
 	return rndImg;
 }

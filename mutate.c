@@ -10,9 +10,9 @@ void mutate(Individual *individual, double rate){
   for (i = 0;i < pixels;i++){
     int randH = rand()%individual->image.height;
     int randW = rand()%individual->image.width;
-    individual->image.data[randH*individual->image.width+randW].r = rand()%(255+1);
-    individual->image.data[randH*individual->image.width+randW].g = rand()%(255+1);
-    individual->image.data[randH*individual->image.width+randW].b = rand()%(255+1);
+    individual->image.data[randH*individual->image.width+randW].r = rand()%(256);
+    individual->image.data[randH*individual->image.width+randW].g = rand()%(256);
+    individual->image.data[randH*individual->image.width+randW].b = rand()%(256);
   }
 }
 
