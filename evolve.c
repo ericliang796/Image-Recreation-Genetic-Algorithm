@@ -13,7 +13,6 @@ PPM_IMAGE *evolve_image(const PPM_IMAGE *image, int num_generations, int populat
 	Individual *imagePopulation;
 	imagePopulation=generate_population(population_size, image->width, image->height, image->max_color);
 
-
 	comp_fitness_population(image->data,imagePopulation,population_size);
 
 	qsort(imagePopulation, population_size, sizeof(Individual), cmp);

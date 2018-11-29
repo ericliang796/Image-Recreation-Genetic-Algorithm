@@ -6,7 +6,7 @@ double comp_distance(const PIXEL *A, const PIXEL *B, int image_size){
 	int i;
 	double DST=0;
 	for(i=0;i<image_size;i++)
-		DST+=(A[i].r-B[i].r)^2+(A[i].g-B[i].g)^2+(A[i].b-B[i].b)^2;
+		DST+=(A[i].r-B[i].r)*(A[i].r-B[i].r) + (A[i].g-B[i].g)*(A[i].g-B[i].g) + (A[i].b-B[i].b)*(A[i].b-B[i].b);
 	return sqrt(DST);
 }
 

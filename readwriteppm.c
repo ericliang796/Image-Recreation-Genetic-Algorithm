@@ -12,7 +12,7 @@ PPM_IMAGE *read_ppm(const char *file_name){
 		fscanf(iIMAGE, "%s%d%d%d", &pType, &(inMage->width), &(inMage->height), &(inMage->max_color));
 		inMage->data=malloc((*inMage).width*(*inMage).height*sizeof(PIXEL));
 		i=0;
-		while(fscanf(iIMAGE, "%d", &(inMage->data[i].r))==1 && fscanf(iIMAGE, "%d", &(inMage->data[i].g))==1 && fscanf(iIMAGE, "%d", &(inMage->data[i].b))==1)
+		while(fscanf(iIMAGE, "%hhu", &(inMage->data[i].r))==1 && fscanf(iIMAGE, "%hhu", &(inMage->data[i].g))==1 && fscanf(iIMAGE, "%hhu", &(inMage->data[i].b))==1)
 			i++;
 		}
 	fclose(iIMAGE);

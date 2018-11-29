@@ -6,7 +6,6 @@
 PIXEL *generate_random_image(int width, int height, int max_color){
 	PIXEL *rndImg;
 	int i;
-
 	rndImg=malloc(width*height*sizeof(PIXEL));
 	for(i=0;i<width*height;i++){
 		rndImg[i].r=rand()%(1+max_color);
