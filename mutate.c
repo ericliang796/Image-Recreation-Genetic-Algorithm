@@ -1,33 +1,25 @@
 #include "a4.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
 
 void mutate(Individual *individual, double rate){
-	int mutN, mutP, RDr, maxC, i, N=individual->image.width*individual->image.height;
-	int mutInd[N];
-	srand(time(NULL));
-	mutN=(int)(N*rate/100);
-	maxC=individual->image.max_color;
-	for(i=0;i<N;i++) mutInd[i]=0;
-	for(i=0;i<mutN;i++){
-		mutP=rand()%N;
-		RDr=0;
-		while(mutInd[mutP]==1 && RDr<5){
-			mutP=rand()%N;
-			RDr++;
-			}
-		individual->image.data[mutP].r=rand()%(1+maxC);
-		individual->image.data[mutP].g=rand()%(1+maxC);
-		individual->image.data[mutP].b=rand()%(1+maxC);
-		mutInd[mutP]=1;
-	}
+  int size = individual->image.width*individual->image.height;
+  int pixels = (rate/100)*size;
+  int i;
+  for (i = 0;i < pixels;i++){
+    int randH = rand()%individual->image.height;
+    int randW = rand()%individual->image.width;
+    individual->image.data[randH*individual->image.width+randW].r = rand()%(255+1);
+    individual->image.data[randH*individual->image.width+randW].g = rand()%(255+1);
+    individual->image.data[randH*individual->image.width+randW].b = rand()%(255+1);
+  }
 }
 
 void mutate_population(Individual *individual, int population_size, double rate){
-	int i, mutST=(int)(population_size/4);
-	for(i=mutST;i<population_size;i++){
-		mutate(&(individual[i]),rate);
-	}
-
+  int i;
+  int size = population_size/4;
+  for (i = size; i < population_size; i++){
+    mutate(&individual[i], rate);
+  }
 }
