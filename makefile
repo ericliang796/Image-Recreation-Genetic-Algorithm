@@ -11,7 +11,7 @@ $(PROGRAM_NAME): $(OBJS)
 escher:
 	make; make
 	./evolve me.ppm me2.ppm 50000 24 3e-2
-mcmaster: 	
+mcmaster:
 	make; make
 	./evolve mcmaster.ppm mcmaster2.ppm 10000 500 3e-2
 

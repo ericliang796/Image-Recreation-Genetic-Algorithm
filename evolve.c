@@ -23,6 +23,11 @@ PPM_IMAGE *evolve_image(const PPM_IMAGE *image, int num_generations, int populat
 		comp_fitness_population(image->data,imagePopulation,population_size);
 		qsort(imagePopulation, population_size, sizeof(Individual), cmp);
 		printf("%d  -  %f\n", i, imagePopulation[0].fitness);
+
+		}
+
+		for (i = 1; i < population_size; i++){
+			free(imagePopulation[i].image.data);
 		}
 	return &imagePopulation[0].image;
 }
